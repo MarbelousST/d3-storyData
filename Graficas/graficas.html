@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,19 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h2>Aspirantes para MADIC</h2>
+    <div id="types">
 
+        <form action="">
+            <input id="radio0" type="radio" name="group" value="aspirantes_total" /> Aspirantes Totales<br>
+            <input id="radio1" type="radio" name="group" value="as_EC" /> Aspirantes para Estrategias en Comunicación<br>
+            <input id="radio2" type="radio" name="group" value="as_DI" /> Aspirantes para Diseño de Información<br>
+            <input id="radio3" type="radio" name="group" value="as_SI" /> Aspirantes para Sistemas para la interacción<br>
+        </form>
+    </div>
 </body>
 <script src="donut_chart.js"></script>
+
 </html>
