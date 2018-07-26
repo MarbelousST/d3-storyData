@@ -70,9 +70,37 @@ function chartbars() {
             .attr("y", function(d) { return y(0); })
             .attr("height", function(d) { return height - y(0); })
             .on("mouseover", function(d) {
+                var xPosition = parseFloat(d3.select(this).attr("x")) + 100;
+                var yPosition = parseFloat(d3.select(this).attr("y")) + 600;
+
+                console.log(xPosition);
+                console.log(yPosition);
+
+                d3.select("#tooltip")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")
+                    .select("#generacion")
+                    .text("Generacion: " + d.categorie);
+                d3.select("#tooltip")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")
+                    .select("#genero")
+                    .text("Genero: " + d.genero)
+                d3.select("#tooltip")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")
+                    .select("#aceptados")
+                    .text("Aceptados: " + d.value)
+
+
+                //Show the tooltip
+                d3.select("#tooltip").classed("hidden", false);
+
+
                 d3.select(this).style("fill", d3.rgb(color(d.genero)).darker(2));
             })
             .on("mouseout", function(d) {
+                d3.select("#tooltip").classed("hidden", true);
                 d3.select(this).style("fill", color(d.genero));
             });
 
