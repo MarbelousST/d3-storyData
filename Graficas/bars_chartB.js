@@ -1,6 +1,6 @@
-chartbars();
+chartbarsB();
 
-function chartbars() {
+function chartbarsB() {
     var x0 = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
 
@@ -21,20 +21,20 @@ function chartbars() {
     //var color = d3.scale.ordinal()
     //    .range(["#ca0020", "#f4a582", "#d5d5d5", "#92c5de", "#0571b0"]);
 
-    var svg = d3.select('#charts').append("svg")
+    var svg = d3.select('#chartsB').append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.json("data.json", function(error, data) {
+    d3.json("becas.json", function(error, data) {
 
-        var categoriesNames = data.map(function(d) { return d.categorie; });
-        var rateNames = data[0].values.map(function(d) { return d.genero; });
+        var categoriessNames = data.map(function(d) { return d.categories; });
+        var rateNames = data[0].values.map(function(d) { return d.estatus; });
 
-        x0.domain(categoriesNames);
+        x0.domain(categoriessNames);
         x1.domain(rateNames).rangeRoundBands([0, x0.rangeBand()]);
-        y.domain([0, d3.max(data, function(categorie) { return d3.max(categorie.values, function(d) { return d.value; }); })]);
+        y.domain([0, d3.max(data, function(categories) { return d3.max(categories.values, function(d) { return d.value; }); })]);
 
         svg.append("g")
             .attr("class", "x axis")
@@ -59,49 +59,49 @@ function chartbars() {
             .data(data)
             .enter().append("g")
             .attr("class", "g")
-            .attr("transform", function(d) { return "translate(" + x0(d.categorie) + ",0)"; });
+            .attr("transform", function(d) { return "translate(" + x0(d.categories) + ",0)"; });
 
         slice.selectAll("rect")
             .data(function(d) { return d.values; })
             .enter().append("rect")
             .attr("width", x1.rangeBand())
-            .attr("x", function(d) { return x1(d.genero); })
-            .style("fill", function(d) { return color(d.genero) })
+            .attr("x", function(d) { return x1(d.estatus); })
+            .style("fill", function(d) { return color(d.estatus) })
             .attr("y", function(d) { return y(0); })
             .attr("height", function(d) { return height - y(0); })
             .on("mouseover", function(d) {
                 var xPosition = parseFloat(d3.select(this).attr("x")) + 100;
-                var yPosition = parseFloat(d3.select(this).attr("y")) + 600;
+                var yPosition = parseFloat(d3.select(this).attr("y")) + 1200;
 
                 console.log(xPosition);
                 console.log(yPosition);
 
+                d3.select("#tooltip2")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")
+                    .select("#generacion2")
+                    .text("Generacion: " + d.categories);
+                d3.select("#tooltip2")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")
+                    .select("#estatus")
+                    .text("Becas o Aceptados: " + d.estatus)
                 d3.select("#tooltip")
                     .style("left", xPosition + "px")
                     .style("top", yPosition + "px")
-                    .select("#generacion")
-                    .text("Generacion: " + d.categorie);
-                d3.select("#tooltip")
-                    .style("left", xPosition + "px")
-                    .style("top", yPosition + "px")
-                    .select("#genero")
-                    .text("Genero: " + d.genero)
-                d3.select("#tooltip")
-                    .style("left", xPosition + "px")
-                    .style("top", yPosition + "px")
-                    .select("#aceptados")
-                    .text("Aceptados: " + d.value)
+                    .select("#value")
+                    .text("Valores: " + d.value)
 
 
                 //Show the tooltip
-                d3.select("#tooltip").classed("hidden", false);
+                d3.select("#tooltip2").classed("hidden", false);
 
 
-                d3.select(this).style("fill", d3.rgb(color(d.genero)).darker(2));
+                d3.select(this).style("fill", d3.rgb(color(d.estatus)).darker(2));
             })
             .on("mouseout", function(d) {
                 d3.select("#tooltip").classed("hidden", true);
-                d3.select(this).style("fill", color(d.genero));
+                d3.select(this).style("fill", color(d.estatus));
             });
 
         slice.selectAll("rect")
@@ -113,7 +113,7 @@ function chartbars() {
 
         //Legend
         var legend = svg.selectAll(".legend")
-            .data(data[0].values.map(function(d) { return d.genero; }).reverse())
+            .data(data[0].values.map(function(d) { return d.estatus; }).reverse())
             .enter().append("g")
             .attr("class", "legend")
             .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })

@@ -1,0 +1,49 @@
+[{
+        "categories": "2014",
+        "values": [{
+                "value": 23,
+                "estatus": "Aceptados"
+            },
+            {
+                "value": 15,
+                "estatus": "Becas"
+            }
+        ]
+    },
+    {
+        "categories": "2015",
+        "values": [{
+                "value": 19,
+                "estatus": "Aceptados"
+            },
+            {
+                "value": 11,
+                "estatus": "Becas"
+            }
+        ]
+    },
+    {
+        "categories": "2016",
+        "values": [{
+                "value": 24,
+                "estatus": "Aceptados"
+            },
+            {
+                "value": 13,
+                "estatus": "Becas"
+            }
+        ]
+    },
+    {
+        "categories": "2017",
+        "values": [{
+                "value": 23,
+                "estatus": "Aceptados"
+            },
+            {
+                "value": 34,
+                "estatus": "Becas"
+            }
+        ]
+    }
+]
