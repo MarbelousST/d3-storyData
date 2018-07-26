@@ -1,5 +1,6 @@
-var width = 300;
-var height = 300;
+var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+    width = 900 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 var radius = Math.min(width, height) / 2;
 var color = d3.scale.category10();
 var arc = d3.svg.arc()
@@ -14,19 +15,19 @@ d3.selectAll("input").on("change", change);
 
 function change() {
     if (document.getElementById('radio0').checked) {
-        d3.selectAll("svg").remove();
+        d3.selectAll("#donut").remove();
         as_total();
     }
     if (document.getElementById('radio1').checked) {
-        d3.selectAll("svg").remove();
+        d3.selectAll("#donut").remove();
         asp_EC();
     }
     if (document.getElementById('radio2').checked) {
-        d3.selectAll("svg").remove();
+        d3.selectAll("#donut").remove();
         asp_DI();
     }
     if (document.getElementById('radio3').checked) {
-        d3.selectAll("svg").remove();
+        d3.selectAll("#donut").remove();
         asp_SI();
     }
 }
@@ -38,9 +39,10 @@ function as_total() {
             return d.aspirantes_totales;
         });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#donutAS").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("id", "donut");
 
     /********* CSV  **************/
     d3.csv("este.csv", type, function(error, data) {
@@ -108,9 +110,10 @@ function asp_EC() {
             return d.as_EC;
         });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#donutAS").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("id", "donut");
 
     /********* CSV  **************/
     d3.csv("este.csv", type, function(error, data) {
@@ -178,9 +181,10 @@ function asp_DI() {
             return d.as_DI;
         });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#donutAS").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("id", "donut");
 
     /********* CSV  **************/
     d3.csv("este.csv", type, function(error, data) {
@@ -248,9 +252,10 @@ function asp_SI() {
             return d.as_SI;
         });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("#donutAS").append("svg")
         .attr("width", width)
-        .attr("height", height);
+        .attr("height", height)
+        .attr("id", "donut");
 
     /********* CSV  **************/
     d3.csv("este.csv", type, function(error, data) {
@@ -316,5 +321,10 @@ function type(d) {
     d.as_DI = +d.as_DI;
     d.as_SI = +d.as_SI;
     d.as_EC = +d.as_EC;
+    d.aspirantes_aceptados = +d.aspirantes_aceptados;
+    d.ac_DI = +d.ac_DI;
+    d.ac_SI = +d.ac_SI;
+    d.ac_EC = +d.ac_EC;
+
     return d;
 };

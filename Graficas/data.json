@@ -1,0 +1,49 @@
+[{
+        "categorie": "2014",
+        "values": [{
+                "value": 12,
+                "genero": "Hombres"
+            },
+            {
+                "value": 11,
+                "genero": "Mujeres"
+            }
+        ]
+    },
+    {
+        "categorie": "2015",
+        "values": [{
+                "value": 7,
+                "genero": "Hombres"
+            },
+            {
+                "value": 12,
+                "genero": "Mujeres"
+            }
+        ]
+    },
+    {
+        "categorie": "2016",
+        "values": [{
+                "value": 7,
+                "genero": "Hombres"
+            },
+            {
+                "value": 17,
+                "genero": "Mujeres"
+            }
+        ]
+    },
+    {
+        "categorie": "2017",
+        "values": [{
+                "value": 8,
+                "genero": "Hombres"
+            },
+            {
+                "value": 15,
+                "genero": "Mujeres"
+            }
+        ]
+    }
+]
