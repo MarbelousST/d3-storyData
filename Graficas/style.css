@@ -1,0 +1,21 @@
+.arc text {
+    font-family: "Verdana";
+    fill: #888;
+}
+
+.arc .name-text {
+    font-size: 1em;
+}
+
+.arc .value-text {
+    font-size: 3em;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
+h2 {
+    font-family: "Verdana";
+    color: #888;
+}
